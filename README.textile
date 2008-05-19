@@ -4,6 +4,32 @@ Thoughts and under construction prototype extensions.
 
 h2. What's in
 
+h3. Element.Methods extensions
+
+h4. Element.Methods.inject
+
+NOTE: Inspiration from mootools 1.2
+
+h4. Element.Methods.toHTML
+
+NOTE: Taken from Protolicious (Kangax) http://github.com/kangax/protolicious/tree/master/element.methods.js
+
+h4. Element.Methods.clone
+
+NOTE: Inspiration from mootools 1.2
+
+Clone a DOM element, can be deep or shallow and keep IDs or not
+
+INFO: support Element.Storage from this playground
+
+h3. Element.Storage
+
+NOTE: Inspired from Mootools 1.2 Element.Storage (http://blog.mootools.net/2008/1/22/Element_Storage)
+
+h4. Element.Methods.retrieve
+
+h4. Element.Methods.store
+
 
 
 © 2008 Sébastien Grosjean

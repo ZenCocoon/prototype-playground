@@ -37,7 +37,7 @@ UI.Asset = Class.create(UI.Options, {
 			};
 		});
 		image.src = element.src = source;
-		if (image && image.complete) image.onload(); //.delay(1);
+		if (image && image.complete) image.onload();
 		return element.writeAttribute(options);
 	}
 });
