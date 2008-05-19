@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Prototype Playground - elements_methods.js test file</title>
+    <link rel="stylesheet" href="stylesheets/test.css" type="text/css" />
+    <script src="../lib/prototype.js" type="text/javascript"></script>
+    <script src="../lib/prototype-ui.js" type="text/javascript"></script>
+    <script src="../lib/unittest.js" type="text/javascript"></script>
+    <script src="../js/protozen-element_storage.js" type="text/javascript"></script>
+    <script src="../js/protozen-element_methods.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="testlog"></div>
+    <div id="div">foo</div>
+    <ul id="tree" style="display: none;" height="200" width="400">
+      <li id="list1">List 1</li>
+      <li id="list2">List 2</li>
+    </ul>
+    <input type="text" name="input" value="The value" height="200" width="400" id="input" />
+    <input type="checkbox" name="checkbox" value="" checked="checked" height="200" width="400" id="checkbox" />
+    
+    <script type="text/javascript">
+      new Test.Unit.Runner({
+        testClone: function() {
+          this.assertEqual('<DIV id=""/>', Element.clone('div').toHTML());
+          this.assertEqual('<DIV id=""/>', $('div').clone().toHTML());
+          this.assertEqual('<DIV id="div"/>', $('div').clone(false, true).toHTML());
+          
+          // Test tree
+          this.assertEqual('<UL width="400" height="200" style="display: none;" id=""/>',
+            $('tree').clone().toHTML());
+          
+          // Test input
+          this.assertEqual('<INPUT width="400" height="200" type="text" id="" value="The value" name="input"/>',
+            $('input').clone().toHTML());
+          this.assertEqual('<INPUT width="400" height="200" type="checkbox" id="" checked="checked" value="" name="checkbox"/>',
+            $('checkbox').clone().toHTML());
+        },
+        testDeepClone: function() {
+          this.assertEqual('<DIV id="">foo</DIV>', $('div').clone(true).toHTML());
+          
+          var tree = $('tree').clone(true);
+          this.assertEqual('', tree.id);
+          tree.descendants().each(function (element) {
+            this.assertEqual('', element.id);
+          }.bind(this));
+        },
+        testKeepId: function() {
+          this.assertEqual('<DIV id="div"/>', $('div').clone(false, true).toHTML())
+          this.assertEqual($('div').toHTML(), $('div').clone(true, true).toHTML());
+          
+          this.assertEqual($('tree').toHTML(), $('tree').clone(true, true).toHTML());
+        },
+        // Needed for Element.Storage
+        testUID: function() {
+          uids = [];
+          uids.push($('tree').uid);
+          $('tree').descendants().each(function (element) {
+            uids.push(element.uid);
+          });
+          
+          var tree = $('tree').clone(true);
+          this.assert(tree.uid);
+          this.assertNotEqual($('tree').uid, tree.uid);
+          tree.descendants().each(function (element) {
+            this.assert(element.uid);
+            this.assert(!uids.include(element.uid));
+          }.bind(this));
+        }
+      });
+    </script>
+  </body>
+</html>
