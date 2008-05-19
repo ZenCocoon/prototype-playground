@@ -30,8 +30,6 @@ h4. Element.Methods.retrieve
 
 h4. Element.Methods.store
 
-
-
 © 2008 Sébastien Grosjean
 
 <pre>
