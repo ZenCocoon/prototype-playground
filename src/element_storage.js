@@ -62,8 +62,9 @@ Element.Storage = {
 * - property: name of the property to retrieve or init with default value
 * - dflt: default value used to initialize storage if undefined
 **/
-Element.Methods.retrieve = function(property, dflt) {
-  var storage = Element.Storage.get(this.uid);
+Element.Methods.retrieve = function(element, property, dflt) {
+  element = $(element);
+  var storage = Element.Storage.get(element.uid);
   var prop = storage[property];
   if (dflt != undefined && prop == undefined)
     prop = storage[property] = dflt;
@@ -73,8 +74,9 @@ Element.Methods.retrieve = function(property, dflt) {
 /**
 * Taken from Mootools 1.2 Element.Storage
 **/
-Element.Methods.store = function(property, value) {
-  var storage = Element.Storage.get(this.uid);
+Element.Methods.store = function(element, property, value) {
+  element = $(element);
+  var storage = Element.Storage.get(element.uid);
   storage[property] = value;
   return this;
 };
