@@ -7,6 +7,7 @@
  * Author:
  *   Sebastien Grosjean (http://zencocoon.com)
  *
+ * Tested under FF 2, FF3, Safari 3, Opera 9.25, IE6, IE7, Camino 1.6
  **/
 
 /**
