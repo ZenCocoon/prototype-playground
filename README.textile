@@ -26,7 +26,16 @@ NOTE: Inspired from Mootools 1.2 Element.Storage (http://blog.mootools.net/2008/
 
 h3. Element.Methods.retrieve
 
+Element.retrieve(@element, property, default) => value
+ 
+Retrieve from the external object Element.Storage and scoping the element, the value defined by property
+If no value exist default is stored and returned
+
 h3. Element.Methods.store
+
+Element.store(@element, property, value) => @element
+
+Store a property / value pair attached to an element in the external object Element.Storage
 
 © 2008 Sébastien Grosjean
 
