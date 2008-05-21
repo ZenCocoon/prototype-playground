@@ -1,66 +1,61 @@
 /**
-* Higly inspired from Mootools 1.2 Element.Storage (http://blog.mootools.net/2008/1/22/Element_Storage)
-*
-* License:
-*	  MIT-style license.
-* 
-* Ported by Sebastien Grosjean (http://zencocoon.com)
-**/
+ * Inspired from Mootools 1.2 Element.Storage (http://blog.mootools.net/2008/1/22/Element_Storage)
+ *
+ * License:
+ *	  MIT-style license.
+ * 
+ * Author:
+ *   Sebastien Grosjean (http://zencocoon.com)
+ *
+ **/
 
 /**
-* Extend Prototype to add UID
-**/
-Object.extend(Prototype, {UID: 1});
-
-var $uid = (Prototype.Browser.IE) ? function(item) {
-  return (item.uid || (item.uid = [Prototype.UID++]))[0];
-} : function(item) {
-  return item.uid || (item.uid = Prototype.UID++);
-};
+ * Extend Prototype to add StorageUID
+ * 
+ **/
+Object.extend(Prototype, {StorageUID: 1});
 
 /**
-* Taken from Mootools 1.2 Core
-**/
-function $pick() {
-  for (var i = 0, l = arguments.length; i < l; i++) {
-    if (arguments[i] != undefined)
-      return arguments[i];
-  }
-}
-
-/**
-* Taken from Mootools 1.2 Element.Storage
-**/
+ * Storage handler
+ * 
+ **/
 Element.Storage = {
   get: function(uid) {
     return (this[uid] || (this[uid] = {}));
+  },
+  
+  init: function(item) {
+    return (item.uid || (item.uid = Prototype.StorageUID++));
   }
 }
 
 /**
-* Taken from Mootools 1.2 Element.Storage
-* 
-* - property: name of the property to retrieve or init with default value
-* - dflt: default value used to initialize storage if undefined
-**/
+ * Element.retrieve(@element, property, default) => value
+ * 
+ * Retrieve from the external object Element.Storage and scoping the element, the value defined by property
+ * If no value exist default is stored and returned
+ * 
+ **/
 Element.Methods.retrieve = function(element, property, dflt) {
-  element = $(element);
-  if (element.uid == undefined) $uid(element);
+  if (!(element = $(element))) return;
+  if (element.uid == undefined) Element.Storage.init(element);
   var storage = Element.Storage.get(element.uid);
   var prop = storage[property];
   if (dflt != undefined && prop == undefined)
     prop = storage[property] = dflt;
-  return $pick(prop);
+  return prop;
 };
 
 /**
-* Taken from Mootools 1.2 Element.Storage
-**/
+ * Element.store(@element, property, value) => @element
+ * 
+ * Store a property / value pair attached to an element in the external object Element.Storage
+ * 
+ **/
 Element.Methods.store = function(element, property, value) {
-  element = $(element);
-  if (element.uid == undefined) $uid(element);
-  var storage = Element.Storage.get(element.uid);
-  storage[property] = value;
+  if (!(element = $(element))) return;
+  if (element.uid == undefined) Element.Storage.init(element);
+  Element.Storage.get(element.uid)[property] = value;
   return this;
 };
 
