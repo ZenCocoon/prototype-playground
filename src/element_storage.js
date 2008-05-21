@@ -1,5 +1,5 @@
 /**
-* Higly inspired from Mootools Element.Storage (http://blog.mootools.net/2008/1/22/Element_Storage)
+* Higly inspired from Mootools 1.2 Element.Storage (http://blog.mootools.net/2008/1/22/Element_Storage)
 *
 * License:
 *	  MIT-style license.
@@ -17,25 +17,6 @@ var $uid = (Prototype.Browser.IE) ? function(item) {
 } : function(item) {
   return item.uid || (item.uid = Prototype.UID++);
 };
-
-/**
-* Overwrite default $ function to add UID
-*
-* Overwriting Element.extend could be better ?
-**/
-function $(element) {
-  if (arguments.length > 1) {
-    for (var i = 0, elements = [], length = arguments.length; i < length; i++)
-      elements.push($(arguments[i]));
-    return elements;
-  }
-  if (Object.isString(element))
-    element = document.getElementById(element);
-  element = Element.extend(element);
-  if (element)
-    $uid(element);
-  return element;
-}
 
 /**
 * Taken from Mootools 1.2 Core
@@ -64,6 +45,7 @@ Element.Storage = {
 **/
 Element.Methods.retrieve = function(element, property, dflt) {
   element = $(element);
+  if (element.uid == undefined) $uid(element);
   var storage = Element.Storage.get(element.uid);
   var prop = storage[property];
   if (dflt != undefined && prop == undefined)
@@ -76,6 +58,7 @@ Element.Methods.retrieve = function(element, property, dflt) {
 **/
 Element.Methods.store = function(element, property, value) {
   element = $(element);
+  if (element.uid == undefined) $uid(element);
   var storage = Element.Storage.get(element.uid);
   storage[property] = value;
   return this;

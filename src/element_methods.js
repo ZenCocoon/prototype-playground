@@ -37,7 +37,7 @@ Element.Methods.toHTML = function(element) {
 * It clone an element and return a clone of it
 **/
 Element.Methods.clone = function(element, deepBoolean, keepId) {
-  var new_element = $($(element).cloneNode(0));
+  var new_element = $(element).cloneNode(0);
   if (!keepId) {
     new_element.id = null;
   }
