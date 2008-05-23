@@ -18,65 +18,64 @@
       <li id="list2">List 2</li>
     </ul>
     <input type="text" name="input" value="The value" height="200" width="400" id="input" />
-    <input type="checkbox" name="checkbox" value="" checked="checked" height="200" width="400" id="checkbox" />
     
     <script type="text/javascript">
       new Test.Unit.Runner({
         testClone: function() {
-          this.assertEqual('<DIV id=""/>', Element.clone('div').toHTML());
-          this.assertEqual('<DIV id=""/>', $('div').clone().toHTML());
-          this.assertEqual('<DIV id="div"/>', $('div').clone(false, true).toHTML());
+          this.assertEqual('<div />', Element.clone('div').toHTML());
+          this.assertEqual('<div />', $('div').clone().toHTML());
+          this.assertEqual('<div id="div" />', $('div').clone(false, true).toHTML());
           
           // Test tree
-          this.assertEqual('<UL width="400" height="200" style="display: none;" id=""/>',
-            $('tree').clone().toHTML());
+          this.assertEqual('<ul width="400" height="200" style="display: none;" />', $('tree').clone().toHTML());
           
           // Test input
-          this.assertEqual('<INPUT width="400" height="200" type="text" id="" value="The value" name="input"/>',
+          this.assertEqual('<input width="400" height="200" type="text" value="The value" name="input" />',
             $('input').clone().toHTML());
-          this.assertEqual('<INPUT width="400" height="200" type="checkbox" id="" checked="checked" value="" name="checkbox"/>',
-            $('checkbox').clone().toHTML());
         },
         testDeepClone: function() {
-          this.assertEqual('<DIV id="">foo</DIV>', $('div').clone(true).toHTML());
+          this.assertEqual('<div>foo</div>', $('div').clone(true).toHTML());
           
           var tree = $('tree').clone(true);
-          this.assertEqual('', tree.id);
+          this.assertNull(tree.id);
           tree.descendants().each(function (element) {
-            this.assertEqual('', element.id);
+            this.assertNull(element.id);
           }.bind(this));
         },
-        testKeepId: function() {
-          this.assertEqual('<DIV id="div"/>', $('div').clone(false, true).toHTML())
+        testCloneWithKeepId: function() {
+          this.assertEqual('<div id="div" />', $('div').clone(false, true).toHTML())
           this.assertEqual($('div').toHTML(), $('div').clone(true, true).toHTML());
           
           this.assertEqual($('tree').toHTML(), $('tree').clone(true, true).toHTML());
         },
         // Needed for Element.Storage
-        testAgainstStorage: function() {
+        testCloneAgainstStorage: function() {
           $('tree').store('test', 'ok');
           
           // Make sure storage works
+          this.assertNotNull($('tree').uid);
           this.assertEqual('ok', $('tree').retrieve('test'));
           
           $('tree').select('li').invoke('store', 'test', 'ok');
+          
           uids = [];
-          if ($('tree').uid != undefined)
-            uids.push($('tree').uid);
+          uids.push($('tree').uid);
           $('tree').descendants().each(function (element) {
-            if (element.uid != undefined)
-              uids.push(element.uid);
+            uids.push(element.uid);
           });
+          this.assertEqual(3, uids.length);
           
           var tree = $('tree').clone(true);
-          this.assertNotEqual('ok', tree.retrieve('test'));
-          tree.select('li').invoke('store', 'test', 'ok');
-          if (tree.uid != undefined)
-            this.assert(!uids.include(tree.uid));
-          tree.descendants().each(function (element) {
-            if (element.uid != undefined)
-              this.assert(!uids.include(element.uid));
+          this.assertNull(tree.uid);
+          tree.select('li').each(function(element) {
+            this.assertNull(element.uid);
           }.bind(this));
+          
+          var tree = $('tree').clone(true, true);
+          this.assertNull(tree.uid);
+          tree.select('li').each(function(element) {
+            this.assertNull(element.uid);
+          }.bind(this)); 
         }
       });
     </script>

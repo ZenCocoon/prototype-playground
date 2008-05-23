@@ -35,9 +35,11 @@ Element.Methods.toHTML = function(element) {
 * Inspired from Mootools Element.clone
 *
 * It clone an element and return a clone of it
+* Already supporting Element.Storage system
+* 
 **/
 Element.Methods.clone = function(element, deepBoolean, keepId) {
-  var new_element = $(element).cloneNode(0);
+  var new_element = $(element).cloneNode(false);
   if (!keepId) {
     new_element.id = null;
   }
@@ -45,7 +47,7 @@ Element.Methods.clone = function(element, deepBoolean, keepId) {
     for (var i = 0, l = element.childNodes.length; i < l; i++) {
       var child = element.childNodes[i];
       if (child)
-        new_element.appendChild(child.nodeType == Node.ELEMENT_NODE ? child.clone(true, keepId) : child.cloneNode(0));
+        new_element.appendChild(child.nodeType == Node.ELEMENT_NODE ? child.clone(true, keepId) : child.cloneNode(false));
     }
   }
   return new_element;
