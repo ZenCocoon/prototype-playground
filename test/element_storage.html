@@ -18,19 +18,19 @@
     <script type="text/javascript">
       new Test.Unit.Runner({
         testStorage: function() {
-          this.assertEqual(1, Prototype.StorageUID);
+          this.assertEqual(1, Prototype.UID);
           
           var string = "Nice string";
           Element.store('element1', 'string', string);
-          this.assertEqual(2, Prototype.StorageUID);
+          this.assertEqual(2, Prototype.UID);
           
           var enumerable = {height: '100px', width: '200px;'};
           $('element1').store('enumerable', enumerable);
-          this.assertEqual(2, Prototype.StorageUID);
+          this.assertEqual(2, Prototype.UID);
           
           var enumerable2 = Object.extend(enumerable, {'float': 'left'});
           $('element2').store('enumerable', enumerable2);
-          this.assertEqual(3, Prototype.StorageUID);
+          this.assertEqual(3, Prototype.UID);
           
           this.assertEqual(string, $('element1').retrieve('string'));
           this.assertEqual(enumerable, $('element1').retrieve('enumerable'));

@@ -11,10 +11,10 @@
  **/
 
 /**
- * Extend Prototype to add StorageUID
+ * Extend Prototype to add UID
  * 
  **/
-Object.extend(Prototype, {StorageUID: 1});
+Object.extend(Prototype, {UID: 1});
 
 /**
  * Storage handler
@@ -26,7 +26,7 @@ Element.Storage = {
   },
   
   init: function(item) {
-    return (item.uid || (item.uid = Prototype.StorageUID++));
+    return (item.uid || (item.uid = Prototype.UID++));
   }
 }
 
