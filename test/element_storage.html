@@ -25,7 +25,7 @@
           this.assertEqual(2, Prototype.UID);
           
           var enumerable = {height: '100px', width: '200px;'};
-          $('element1').store('enumerable', enumerable);
+          this.assertEqual($('element1'), $('element1').store('enumerable', enumerable));
           this.assertEqual(2, Prototype.UID);
           
           var enumerable2 = Object.extend(enumerable, {'float': 'left'});

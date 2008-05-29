@@ -57,7 +57,7 @@ Element.Methods.store = function(element, property, value) {
   if (!(element = $(element))) return;
   if (element.uid == undefined) Element.Storage.init(element);
   Element.Storage.get(element.uid)[property] = value;
-  return this;
+  return element;
 };
 
 Element.addMethods();
