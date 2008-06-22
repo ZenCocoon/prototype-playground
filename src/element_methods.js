@@ -16,9 +16,9 @@ Element.Methods.inject = function(element, parent) {
 
 /**
  * Taken from Protolicious (Kangax) http://github.com/kangax/protolicious/tree/master/element.methods.js
- * Tiny change made in first line
- *
- * NOTICE: The output is different each browsers
+ * 
+ * CHANGES: Tiny change made in first line
+ * WARNING: The output is different each browsers
  * 
  **/
 Element.Methods.toHTML = function(element) {
