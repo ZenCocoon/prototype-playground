@@ -21,6 +21,24 @@
     
     <script type="text/javascript">
       new Test.Unit.Runner({
+        /**
+         * Test Element.toHTML
+         * 
+         **/
+        testToHTML: function() {
+          this.assertEqual('<div id="div">foo</div>', $('div').toHTML());
+          this.assertEqual('<div />', new Element('div').toHTML());
+          this.assertEqual('<div>TEST="ok"</div>', new Element('div').update('TEST="ok"').toHTML());
+          this.assertEqual('<div id="foo"><div /></div>',
+            new Element('div', {id: 'foo'}).insert(new Element('div')).toHTML());
+          this.assertEqual('<ul id="tree" style="display: none;" height="200" width="400"><li id="list1">List 1</li><li id="list2">List 2</li></ul>', $('tree').toHTML());
+        },
+        
+        
+        /**
+         * Test Element.clone
+         * 
+         **/
         testClone: function() {
           this.assertEqual('<div />', Element.clone('div').toHTML());
           this.assertEqual('<div />', $('div').clone().toHTML());
@@ -37,9 +55,9 @@
           this.assertEqual('<div>foo</div>', $('div').clone(true).toHTML());
           
           var tree = $('tree').clone(true);
-          this.assertNull(tree.id);
+          this.assertEqual('', tree.id);
           tree.descendants().each(function (element) {
-            this.assertNull(element.id);
+            this.assertEqual('', element.id);
           }.bind(this));
         },
         testCloneWithKeepId: function() {
@@ -75,7 +93,7 @@
           this.assertNull(tree.uid);
           tree.select('li').each(function(element) {
             this.assertNull(element.uid);
-          }.bind(this)); 
+          }.bind(this));
         }
       });
     </script>
