@@ -13,6 +13,7 @@ h3. Element.Methods.toHTML
 NOTE: Taken from Protolicious (Kangax) http://github.com/kangax/protolicious/tree/master/element.methods.js
 
 CHANGES: Tiny change made in first line
+
 WARNING: The output is different each browsers
 
 h3. Element.Methods.clone
