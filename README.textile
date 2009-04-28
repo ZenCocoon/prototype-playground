@@ -24,24 +24,22 @@ Clone a DOM element, can be deep or shallow and keep IDs or not
 
 INFO: support Element.Storage from this playground
 
-h2. Element.Storage
+h2. Form.PasswordFields
 
-NOTE: Inspired from Mootools 1.2 Element.Storage (http://blog.mootools.net/2008/1/22/Element_Storage)
+Made to toggle password fields while editing user entry
 
-h3. Element.Methods.retrieve
+To be used with similar html code :
 
-Element.retrieve(@element, property, default) => value
- 
-Retrieve from the external object Element.Storage and scoping the element, the value defined by property
-If no value exist default is stored and returned
+<fieldset id="password_fields">
+  <legend>Change your password</legend>
+  <div class="field"><label for="user_password"><span class="field_name">Password <span class="hint">(leave blank to keep actual password)</span></label><input autocomplete="off" id="user_password" name="user[password]" size="30" type="password" /></div>
 
-h3. Element.Methods.store
+  <div class="field"><label for="user_password_confirmation"><span class="field_name">Password confirmation</span></label><input id="user_password_confirmation" name="user[password_confirmation]" size="30" type="password" /></div>
+</fieldset>
 
-Element.store(@element, property, value) => @element
+NOTE : Check the code for better understanding, it's 15 lines only, notice included
 
-Store a property / value pair attached to an element in the external object Element.Storage
-
-© 2008 Sébastien Grosjean
+© 2008-2009 Sébastien Grosjean
 
 <pre>
 Permission is hereby granted, free of charge, to any person obtaining a copy
