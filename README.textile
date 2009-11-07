@@ -48,6 +48,7 @@ Allow to create a Date based on an ISO 8601 formatted date time string, as Date#
 //-> Fri Nov 06 2009 15:30:12 GMT+0200 (EET)
 </code></pre>
 
+h2. License
 
 © 2008-2009 Sébastien Grosjean
 
