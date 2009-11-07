@@ -42,7 +42,7 @@ NOTE : Check the code for better understanding, it's 15 lines only, notice inclu
 
 h2. Date.fromJSON()
 
-Allow to create a Date based on an ISO 8601 formatted date time string, as Date#toJSON() produce
+Allow to calculate the number of milliseconds since midnight of January 1, 1970 according to universal time based on an ISO 8601 formatted date time string, as Date#toJSON() produce.
 
 <pre><code>Date.fromJSON("2009-11-06T13:30:12Z");
 //-> 1257514212000

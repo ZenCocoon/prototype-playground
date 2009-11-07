@@ -5,10 +5,10 @@
 **/
 
 /**
-* Date.fromJSON(string) -> Date
+* Date.fromJSON(string) -> Integer
 * - string (String): A string representation of the date in ISO 8601 format.
 * 
-* Returns a new Date object based on the JSON string date time.
+* Returns returns the number of milliseconds since midnight of January 1, 1970 according to universal time.
 *
 * <h5>Example</h5>
 *
