@@ -30,8 +30,7 @@ Made to toggle password fields while editing user entry
 
 To be used with similar html code :
 
-<pre><code>
-<fieldset id="password_fields">
+<pre><code><fieldset id="password_fields">
   <legend>Change your password</legend>
   <div class="field"><label for="user_password"><span class="field_name">Password <span class="hint">(leave blank to keep actual password)</span></label><input autocomplete="off" id="user_password" name="user[password]" size="30" type="password" /></div>
 
@@ -45,8 +44,7 @@ h2. Date.fromJSON()
 
 Allow to create a Date based on an ISO 8601 formatted date time string, as Date#toJSON() produce
 
-<pre><code>
-new Date.fromJSON("2009-11-06T13:30:12Z");
+<pre><code>new Date.fromJSON("2009-11-06T13:30:12Z");
 //-> Fri Nov 06 2009 15:30:12 GMT+0200 (EET)
 </code></pre>
 
