@@ -44,7 +44,9 @@ h2. Date.fromJSON()
 
 Allow to create a Date based on an ISO 8601 formatted date time string, as Date#toJSON() produce
 
-<pre><code>new Date.fromJSON("2009-11-06T13:30:12Z");
+<pre><code>Date.fromJSON("2009-11-06T13:30:12Z");
+//-> 1257514212000
+new Date(Date.fromJSON("2009-11-06T13:30:12Z"));
 //-> Fri Nov 06 2009 15:30:12 GMT+0200 (EET)
 </code></pre>
 
