@@ -40,6 +40,15 @@ To be used with similar html code :
 
 NOTE : Check the code for better understanding, it's 15 lines only, notice included
 
+h2. LabelsAsPlaceholders
+
+Make labels behaving like placeholders, inspired by me.com as of 25 July 2010.
+
+Labels attached to an input, select or textarea using the 'for' attribute will be hidden when their input become field, they will be shown again once blank.
+
+<pre><code><label for="my-input-id">Input</label><input id="my-input-id" name="my-input-id" value="" />
+</code></pre>
+
 h2. Date.fromJSON()
 
 Allow to calculate the number of milliseconds since midnight of January 1, 1970 according to universal time based on an ISO 8601 formatted date time string, as Date#toJSON() produce.
