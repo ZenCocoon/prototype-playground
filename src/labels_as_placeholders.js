@@ -14,7 +14,7 @@
 **/
 LabelsAsPlaceholders = Class.create({
   initialize: function() {
-    var inputs = $$('input, select, textarea');
+    var inputs = $$('input:not([type=submit]), select, textarea');
     
     inputs.each(function(input) {
       if ($F(input).length > 0)
